@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/text_icon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/rounded_grey_background"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
+        android:gravity="start|center_vertical"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/text_symbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:gravity="start|center_vertical"
+        android:textColor="@color/colorGrey"
+        android:textAllCaps="true"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_navigate_next_24"
+        android:layout_gravity="center_vertical"
+        tools:ignore="ContentDescription" />
+</LinearLayout>
