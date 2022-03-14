@@ -23,4 +23,4 @@ It includes 3 layers:
 3. Data Layer: Repositories, Data Sources, Local Databases.
 
 ## What can improve more?
-I didn't implemented the paging for currency list, but in real app, we can add paging implementation.
+I didn't implement the paging for currency list, but in real app, we can add paging implementation.
