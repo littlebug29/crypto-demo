@@ -4,6 +4,10 @@ buildscript {
         room_version = "2.4.2"
         lifecycle_version = "2.4.1"
         hilt_version = '2.41'
+        coroutine_version = "1.6.0"
+    }
+    repositories {
+        mavenCentral()
     }
     dependencies {
         classpath("com.google.dagger:hilt-android-gradle-plugin:$hilt_version")

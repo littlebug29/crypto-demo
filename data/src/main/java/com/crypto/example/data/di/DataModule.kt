@@ -2,7 +2,7 @@ package com.crypto.example.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.crypto.example.data.CurrenciesLocalDataSource
+import com.crypto.example.data.CurrencyListLocalDataSource
 import com.crypto.example.data.CurrencyListRepositoryImpl
 import com.crypto.example.data.database.CurrencyDatabase
 import com.crypto.example.domain.repositories.CurrencyListRepository
@@ -30,8 +30,8 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideDataSource(currencyDatabase: CurrencyDatabase): CurrenciesLocalDataSource =
-        CurrenciesLocalDataSource(currencyDatabase.currencyDao())
+    fun provideDataSource(currencyDatabase: CurrencyDatabase): CurrencyListLocalDataSource =
+        CurrencyListLocalDataSource(currencyDatabase.currencyDao())
 
     @Singleton
     @Provides

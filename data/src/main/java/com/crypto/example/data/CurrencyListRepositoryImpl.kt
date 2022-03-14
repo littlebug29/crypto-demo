@@ -26,12 +26,12 @@ import javax.inject.Inject
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("currency_states")
 
 class CurrencyListRepositoryImpl @Inject constructor(
-    private val currenciesLocalDataSource: CurrenciesLocalDataSource,
+    private val currencyListLocalDataSource: CurrencyListLocalDataSource,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : CurrencyListRepository {
     override suspend fun loadAllCurrencies(): DataResult<List<CurrencyEntity>> = withContext(dispatcher) {
         return@withContext try {
-            val allCurrencies = currenciesLocalDataSource.loadAllCurrencies()
+            val allCurrencies = currencyListLocalDataSource.loadAllCurrencies()
             Success(allCurrencies)
         } catch (exception: Exception) {
             Error(exception)
@@ -85,7 +85,7 @@ class CurrencyListRepositoryImpl @Inject constructor(
     ): Boolean = withContext(dispatcher) {
         if (currencyEntities.isEmpty()) return@withContext false
         val localCurrencies = currencyEntities.map { LocalCurrency(it.id, it.name, it.symbol) }
-        currenciesLocalDataSource.importCurrencies(localCurrencies)
+        currencyListLocalDataSource.importCurrencies(localCurrencies)
         context.dataStore.edit { states ->
             states[booleanPreferencesKey(CURRENCY_LOADING_STATE)] = true
         }

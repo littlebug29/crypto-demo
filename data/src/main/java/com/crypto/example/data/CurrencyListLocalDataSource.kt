@@ -4,7 +4,7 @@ import com.crypto.example.data.database.CurrencyDao
 import com.crypto.example.data.database.LocalCurrency
 import com.crypto.example.domain.CurrencyEntity
 
-class CurrenciesLocalDataSource(
+class CurrencyListLocalDataSource(
     private val currencyDao: CurrencyDao
 ) {
     suspend fun loadAllCurrencies(): List<CurrencyEntity> =
