@@ -4,11 +4,12 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.crypto.example.data.database.LocalCurrency
+import com.crypto.example.domain.repositories.Error
 import com.crypto.example.domain.repositories.Success
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
-import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.*
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
 import org.junit.Before
@@ -19,6 +20,7 @@ import org.mockito.Mock
 import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
 import org.mockito.kotlin.whenever
+import java.sql.SQLException
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
@@ -60,8 +62,16 @@ class CurrencyListRepositoryImplTest {
     fun test_getAllCurrencies_Success() = runTest {
         whenever(mockCurrencyListLocalDataSource.loadAllCurrencies()).thenReturn(fakeCurrencyList)
         val dataResult = currencyListRepositoryImpl.loadAllCurrencies()
-        assertThat(dataResult is Success, `is`(true))
+        assertThat(dataResult, instanceOf(Success::class.java))
         assertThat((dataResult as Success).values.size, `is`(fakeCurrencyList.size))
+    }
+
+    @Test
+    fun test_getAllCurrencies_Error() = runTest {
+        whenever(mockCurrencyListLocalDataSource.loadAllCurrencies()).thenThrow(SQLException())
+        val dataResult = currencyListRepositoryImpl.loadAllCurrencies()
+        assertThat(dataResult, instanceOf(Error::class.java))
+        assertThat((dataResult as Error).exception, instanceOf(SQLException::class.java))
     }
 
 }
